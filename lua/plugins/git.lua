@@ -68,17 +68,20 @@ return {
         map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
         map("n", "<leader>gR", gs.reset_buffer, { desc = "Git Reset buffer" })
         map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview git hunk" })
-        map("n", "<leader>gb", function()
-          gs.blame_line({ full = false })
-        end, { desc = "Git blame line" })
-        map("n", "<leader>gd", gs.diffthis, { desc = "Git diff against index" })
+        map("n", "<leader>gb", function() gs.blame_line({ full = false }) end, { desc = "Git blame line" })
+        -- map("n", "<leader>gd", gs.diffthis, { desc = "Git diff against index" })
         map("n", "<leader>gD", function()
           gs.diffthis("~")
         end, { desc = "Git diff against last commit" })
 
         -- Toggles
-        map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle git blame line" })
+        -- map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle git blame line" })
         map("n", "<leader>gd", gs.toggle_deleted, { desc = "Toggle git show deleted" })
+
+        map("n", '<leader>gt', require("telescope.builtin").git_status, { desc = "Git status list" })
+        map("n", '<leader>gc', require("telescope.builtin").git_commits, { desc = "Git Commits list" })
+        map("n", '<leader>gB', require("telescope.builtin").git_branches, { desc = "Git Branches list" })
+        map("n", '<leader>gl', require("telescope.builtin").git_stash, { desc = "Git Stash list" })
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select git hunk" })
