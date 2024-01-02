@@ -31,6 +31,15 @@ return {
     },
   },
   {
+    "akinsho/toggleterm.nvim",
+    cmd = { "ToggleTerm", "TermExec" },
+    opts = {
+      open_mapping = [[<F7>]],
+      shading_factor = 2,
+      float_opts = { border = "rounded" },
+    },
+  },
+  {
     "kylechui/nvim-surround",
     version = "*",
     event = "VeryLazy",

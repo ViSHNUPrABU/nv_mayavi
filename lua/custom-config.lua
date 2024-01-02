@@ -14,6 +14,7 @@ vim.keymap.set('n', '<leader>X', "<cmd>confirm qall<cr>", { desc = "Quit All" })
 vim.keymap.set('n', '<leader>c', "<cmd>bd<cr>", { desc = "Close Buffer" })
 
 vim.keymap.set('n', '<leader>db', "<cmd>DBUIToggle<cr>", { desc = "Toggle Dadbod UI" })
+vim.keymap.set('n', '<F7>', "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
 
 vim.keymap.set('n', '<C-h>', "<C-w>h", { desc = "Move to left split" })
 vim.keymap.set('n', '<C-j>', "<C-w>j", { desc = "Move to below split" })
