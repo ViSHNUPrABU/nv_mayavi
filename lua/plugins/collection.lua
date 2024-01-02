@@ -18,6 +18,25 @@ return {
     end,
   },
   {
+    'ViSHNUPrABU/vim-dadbod-ui',
+    dependencies = {
+      { 'ViSHNUPrABU/vim-dadbod', lazy = true },
+      { 'ViSHNUPrABU/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
     "numToStr/Comment.nvim",
     keys = {
       { "gc", mode = { "n", "v" }, desc = "Comment toggle linewise" },
@@ -40,6 +59,7 @@ return {
       require("neo-tree").setup({
         filesystem = {
           filtered_items = {
+            visible = true,
             hide_dotfiles = false,
           },
         },

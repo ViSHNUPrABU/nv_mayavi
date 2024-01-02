@@ -21,7 +21,7 @@ return {
       lspconfig.tsserver.setup({})
       lspconfig.angularls.setup({})
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Declaration of current symbol" })
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Declaration of current symbol" })
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Definition of current symbol" })
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = "Implementation of current symbol" })
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = "References of current symbol" })
       vim.keymap.set('n', '<leader>lH', vim.lsp.buf.signature_help, { desc = "Signature help" })
