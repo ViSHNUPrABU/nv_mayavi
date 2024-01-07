@@ -45,8 +45,8 @@ return {
         { desc = "Open harpoon window" })
     vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end, { desc = "Add Harpoon" })
     vim.keymap.set("n", "<leader>hm", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
-    vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "Previous Harpoon Item" })
-    vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Next Harpoon Item" })
+    vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end, { desc = "Previous Harpoon Item" })
+    vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end, { desc = "Next Harpoon Item" })
     vim.keymap.set("n", "<leader>hs", function() select_harpoon_item() end, { desc = "Select Harpoon Item" })
   end,
 }

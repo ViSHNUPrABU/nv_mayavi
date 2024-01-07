@@ -3,7 +3,16 @@ return {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function ()
-        require'alpha'.setup(require'alpha.themes.startify'.config)
+      local startify = require'alpha.themes.startify'.config
+      startify.layout[2].val = {
+          [[                                      __                 ]],
+          [[     ___      ___     ___    __   __ /\_\     ___ ___    ]],
+          [[    / _ `\   / __`\  / __`\ /\ \ /\ \\/\ \   / __` __`\  ]],
+          [[   /\ \/\ \ /\  __/ /\ \_\ \\ \ \_/ / \ \ \ /\ \/\ \/\ \ ]],
+          [[   \ \_\ \_\\ \____\\ \____/ \ \___/   \ \_\\ \_\ \_\ \_\]],
+          [[    \/_/\/_/ \/____/ \/___/   \/__/     \/_/ \/_/\/_/\/_/]],
+      }
+      require'alpha'.setup(startify)
     end
   };
   {
@@ -13,6 +22,36 @@ return {
     config = function()
       vim.cmd.colorscheme("catppuccin")
     end,
+  },
+  {
+    'stevearc/resession.nvim',
+    opts = {},
+    config = function ()
+      local resession = require('resession')
+      resession.setup()
+
+      local load_cur_dir_sess = function()
+        if vim.fn.argc(-1) == 0 then
+          resession.load(vim.fn.getcwd(), { silence_errors = true })
+        end
+      end
+
+      vim.keymap.set('n', "<leader>Sl", function() resession.load "Last Session" end, { desc = "Load last session" })
+      vim.keymap.set('n', "<leader>Ss", function() resession.save() end, { desc = "Save this session" })
+      vim.keymap.set('n', "<leader>Sd", function() resession.delete() end, { desc = "Delete a session" })
+      vim.keymap.set('n', "<leader>Sf", function() resession.load() end, { desc = "Load a session" })
+      vim.keymap.set('n', "<leader>S.", load_cur_dir_sess, { desc = "Load current directory session" })
+      vim.keymap.set('n', '<leader>Sd', resession.delete)
+
+      -- vim.api.nvim_create_autocmd("VimEnter", {
+      --   callback = load_cur_dir_sess
+      -- })
+      vim.api.nvim_create_autocmd("VimLeavePre", {
+        callback = function()
+          resession.save(vim.fn.getcwd(), {notify = false })
+        end,
+      })
+    end
   },
   {
     "nvim-lualine/lualine.nvim",
