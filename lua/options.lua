@@ -1,17 +1,23 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set number")
-vim.cmd("set cursorline")
-vim.cmd("set clipboard+=unnamedplus")
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.number = true
+vim.o.cursorline = true
+vim.o.clipboard = 'unnamedplus'
+vim.o.undofile = true
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>s', "<cmd>w<cr>", { desc = "Save" })
+vim.keymap.set('n', '<A-f>', "10j", { desc = "Move down 10 lines" })
+vim.keymap.set('n', '<A-b>', "10k", { desc = "Move up 10 lines" })
+
+vim.keymap.set('n', '<leader>w', "<cmd>w<cr>", { desc = "Save" })
+vim.keymap.set('n', '<leader>W', "<cmd>wall<cr>", { desc = "Save" })
 vim.keymap.set('n', '<leader>x', "<cmd>confirm q<cr>", { desc = "Quit" })
 vim.keymap.set('n', '<leader>X', "<cmd>confirm qall<cr>", { desc = "Quit All" })
-
-vim.keymap.set('n', '<leader>c', "<cmd>bd<cr>", { desc = "Close Buffer" })
+-- vim.keymap.set('n', '<leader>c', "<cmd>bdelete! %d<cr>", { desc = "Close Buffer" })
+vim.keymap.set('n', '<leader>c', function() require("custom.ui").close_current_buf() end, { desc = "Close Buffer" })
+vim.keymap.set('n', '<leader>C', function() require("custom.ui").close_all_buf_except_current() end, { desc = "Close all buffer except current" })
 
 vim.keymap.set('n', '<leader>db', "<cmd>DBUIToggle<cr>", { desc = "Toggle Dadbod UI" })
 vim.keymap.set('n', '<F7>', "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
@@ -39,3 +45,7 @@ vim.keymap.set('n', '<leader>qn', function() require("custom.git-diff").next_qui
 vim.keymap.set('n', '<leader>qh', function() require("custom.git-diff").view_git_history() end, { desc = "View Git History" })
 
 vim.keymap.set('n', '<leader>ui', function() require("custom.ui").set_indent() end, { desc = "Change indent setting" })
+vim.keymap.set('n', '<leader>ut', "<cmd>UndotreeToggle<cr>", { desc = "UndoTree Toggle" })
+
+vim.keymap.set('n', '<Tab>', function() require("custom.ui").bufnav(vim.v.count > 0 and vim.v.count or 1) end, { desc = "Next buffer" })
+vim.keymap.set('n', '<S-Tab>', function() require("custom.ui").bufnav(-(vim.v.count > 0 and vim.v.count or 1)) end, { desc = "Previous buffer" })

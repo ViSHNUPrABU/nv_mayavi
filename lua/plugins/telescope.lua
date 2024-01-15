@@ -9,6 +9,7 @@ return {
       vim.keymap.set('n', '<leader>fb', require("telescope.builtin").buffers, { desc = "Find Buffers" })
       vim.keymap.set('n', '<leader>fm', require("telescope.builtin").marks, { desc = "Find Marks" })
       vim.keymap.set('n', '<leader>fo', require("telescope.builtin").oldfiles, { desc = "Find Old Files" })
+      vim.keymap.set('n', '<leader>fr', require("telescope.builtin").resume, { desc = "Find Resume" })
       vim.keymap.set('n', '<leader>fA', function() require("telescope").extensions.live_grep_args.live_grep_args() end
         ,{ desc = "Find Words with Args" })
     end

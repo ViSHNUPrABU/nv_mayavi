@@ -8,9 +8,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver" }
-      })
+      require("mason-lspconfig").setup()
     end
   },
   {
@@ -20,6 +18,10 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.tsserver.setup({})
       lspconfig.angularls.setup({})
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+      vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+      vim.keymap.set('n', 'gL', vim.diagnostic.setqflist, { desc = 'Open diagnostics list' })
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Declaration of current symbol" })
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Definition of current symbol" })
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = "Implementation of current symbol" })

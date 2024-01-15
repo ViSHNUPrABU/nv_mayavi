@@ -24,33 +24,10 @@ return {
     end,
   },
   {
-    'stevearc/resession.nvim',
-    opts = {},
-    config = function ()
-      local resession = require('resession')
-      resession.setup()
-
-      local load_cur_dir_sess = function()
-        if vim.fn.argc(-1) == 0 then
-          resession.load(vim.fn.getcwd(), { silence_errors = true })
-        end
-      end
-
-      vim.keymap.set('n', "<leader>Sl", function() resession.load "Last Session" end, { desc = "Load last session" })
-      vim.keymap.set('n', "<leader>Ss", function() resession.save() end, { desc = "Save this session" })
-      vim.keymap.set('n', "<leader>Sd", function() resession.delete() end, { desc = "Delete a session" })
-      vim.keymap.set('n', "<leader>Sf", function() resession.load() end, { desc = "Load a session" })
-      vim.keymap.set('n', "<leader>S.", load_cur_dir_sess, { desc = "Load current directory session" })
-      vim.keymap.set('n', '<leader>Sd', resession.delete)
-
-      -- vim.api.nvim_create_autocmd("VimEnter", {
-      --   callback = load_cur_dir_sess
-      -- })
-      vim.api.nvim_create_autocmd("VimLeavePre", {
-        callback = function()
-          resession.save(vim.fn.getcwd(), {notify = false })
-        end,
-      })
+    "mbbill/undotree",
+    cmd = { "UndotreeToggle" },
+    opts = { use_default_keymaps = false },
+    config = function()
     end
   },
   {
@@ -101,6 +78,34 @@ return {
       local commentstring_avail, commentstring = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
       return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
     end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+    config = function()
+      require("bufferline").setup({
+        options = {
+          diagnostics = "nvim_lsp",
+          diagnostics_indicator = function(count, level, diagnostics_dict, context)
+              return "("..count..")"
+          end,
+          custom_filter = function(buf, buf_nums)
+            local current_tab = vim.api.nvim_get_current_tabpage()
+            local buf_info = vim.fn.getbufinfo(buf)
+            for _, info in ipairs(buf_info) do
+                if info.variables.tabpage == current_tab then
+                    return true
+                end
+            end
+            return false
+          end,
+          show_tab_indicators = true,
+        }
+      })
+    end
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
