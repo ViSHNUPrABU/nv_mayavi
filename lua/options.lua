@@ -1,7 +1,3 @@
-vim.o.expandtab = true
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
 vim.o.number = true
 vim.o.cursorline = true
 vim.o.clipboard = 'unnamedplus'
@@ -10,6 +6,8 @@ vim.g.mapleader = " "
 
 vim.keymap.set('n', '<A-f>', "10j", { desc = "Move down 10 lines" })
 vim.keymap.set('n', '<A-b>', "10k", { desc = "Move up 10 lines" })
+
+vim.keymap.set('n', '<leader>a', "gg0VG$", { desc = "Select All" })
 
 vim.keymap.set('n', '<leader>w', "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set('n', '<leader>W', "<cmd>wall<cr>", { desc = "Save" })
@@ -32,6 +30,9 @@ vim.keymap.set('n', '<C-Down>', "<cmd>resize +1<CR>", { desc = "Resize split dow
 vim.keymap.set('n', '<C-Left>', "<cmd>vertical resize -1<CR>", { desc = "Resize split left" })
 vim.keymap.set('n', '<C-Right>', "<cmd>vertical resize +1<CR>", { desc = "Resize split right" })
 
+vim.keymap.set('n', '<leader>ss', function() require("custom.sessions").save_current_dir_session() end, { desc = "Save Current Session" })
+vim.keymap.set('n', '<leader>sl', function() require("custom.sessions").load_current_dir_session() end, { desc = "Load Current Session" })
+
 vim.keymap.set('n', '<leader>wv', "<cmd>vsplit<cr>", { desc = "Vertical Split" })
 vim.keymap.set('n', '<leader>ws', "<cmd>split<cr>", { desc = "Horizontal Split" })
 
@@ -43,6 +44,7 @@ vim.keymap.set('n', '<leader>tc', "<cmd>tabclose<cr>", { desc = "Close tab" })
 vim.keymap.set('n', '<leader>qp', function() require("custom.git-diff").prev_quickfix_entry() end, { desc = "Move to Previous QuickFix List" })
 vim.keymap.set('n', '<leader>qn', function() require("custom.git-diff").next_quickfix_entry() end, { desc = "Move to Next QuickFix List" })
 vim.keymap.set('n', '<leader>qh', function() require("custom.git-diff").view_git_history() end, { desc = "View Git History" })
+vim.keymap.set('n', '<leader>qc', function() require("custom.git-diff").close_quickfix_window() end, { desc = "Close QuickFix List" })
 
 vim.keymap.set('n', '<leader>ui', function() require("custom.ui").set_indent() end, { desc = "Change indent setting" })
 vim.keymap.set('n', '<leader>ut', "<cmd>UndotreeToggle<cr>", { desc = "UndoTree Toggle" })

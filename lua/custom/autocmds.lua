@@ -1,4 +1,4 @@
-local update_tabpage_group = vim.api.nvim_create_augroup("UpdateTabpageKey", { clear = true })
+local update_tabpage_group = vim.api.nvim_create_augroup("UpdateTabPageKey", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	desc = "Updating the current tabpage to bufinfo",

@@ -44,4 +44,10 @@ function M.next_quickfix_entry()
     vim.cmd("wincmd p")
 end
 
+function M.close_quickfix_window()
+    vim.cmd("copen")
+    require("custom.ui").close_current_buf()
+    vim.cmd("confirm q")
+end
+
 return M

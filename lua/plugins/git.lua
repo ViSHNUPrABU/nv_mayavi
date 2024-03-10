@@ -2,7 +2,7 @@ return {
   {
     "tpope/vim-fugitive",
     config = function ()
-      vim.keymap.set('n', '<leader>gg', '<cmd>Git!<cr>', { desc = "Git Fugitive" } )
+      vim.keymap.set('n', '<leader>gg', '<cmd>Git! | wincmd H | vertical resize 100<cr>', { desc = "Git Fugitive" } )
       vim.keymap.set('n', '<leader>gv', '<cmd>Gvdiffsplit!<cr>', { desc = "View Vertical Three way diff split" })
     end
   },

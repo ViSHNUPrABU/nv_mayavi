@@ -24,15 +24,17 @@ function M.bufnav(n)
 	local buf_info = vim.fn.getbufinfo()
 	local bufs = {}
 
-  for _, info in ipairs(buf_info) do
-	  local term_pattern = "^term://.*;#toggleterm#"
-    local non_term_condition = info.name:find(term_pattern) == nil
+	local term_pattern = "^term://.*;#toggleterm#"
+	local neo_tree_pattern = "neo.*tree.*filesystem"
+
+	for _, info in ipairs(buf_info) do
+		local non_term_condition = (info.name:find(term_pattern) == nil) and (info.name:find(neo_tree_pattern) == nil)
 		if info.variables.tabpage == current_tab and non_term_condition == true then
 			table.insert(bufs, info.bufnr)
 		end
 	end
 
-  vim.t.bufs = bufs
+	vim.t.bufs = bufs
 	for i, v in ipairs(vim.t.bufs) do
 		if current_buf == v then
 			vim.cmd.b(vim.t.bufs[(i + n - 1) % #vim.t.bufs + 1])
@@ -44,19 +46,23 @@ end
 function M.close_all_buf_except_current()
 	local current_tab = vim.api.nvim_get_current_tabpage()
 	local current_buf = vim.api.nvim_get_current_buf()
-  local buf_info = vim.fn.getbufinfo()
+	local buf_info = vim.fn.getbufinfo()
+
+	local term_pattern = "^term://.*;#toggleterm#"
+
 	for _, info in ipairs(buf_info) do
-		if info.variables.tabpage == current_tab and info.bufnr ~= current_buf then
+		local non_term_condition = info.name:find(term_pattern) == nil
+		if info.variables.tabpage == current_tab and info.bufnr ~= current_buf and non_term_condition == true then
 			vim.cmd("bdelete! " .. info.bufnr)
 		end
 	end
-  vim.cmd.redrawtabline()
+	vim.cmd.redrawtabline()
 end
 
 function M.close_current_buf()
 	local current_buf = vim.api.nvim_get_current_buf()
-  M.bufnav(vim.v.count > 0 and vim.v.count or 1)
-  vim.cmd("bdelete! " .. current_buf)
+	M.bufnav(vim.v.count > 0 and vim.v.count or 1)
+	vim.cmd("bdelete! " .. current_buf)
 end
 
 return M
