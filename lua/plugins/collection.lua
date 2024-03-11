@@ -24,6 +24,19 @@ return {
     end,
   },
   {
+    'rmagatti/goto-preview',
+    config = function()
+      local goto_preview = require('goto-preview')
+      goto_preview.setup({})
+      vim.keymap.set("n", "<leader>pd", function() goto_preview.goto_preview_definition() end, { desc = "Goto-Preview Definition" })
+      vim.keymap.set("n", "<leader>pt", function() goto_preview.goto_preview_type_definition() end, { desc = "Goto-Preview Type Definition" })
+      vim.keymap.set("n", "<leader>pi", function() goto_preview.goto_preview_implementation() end, { desc = "Goto-Preview Implementation" })
+      vim.keymap.set("n", "<leader>pD", function() goto_preview.goto_preview_declaration() end, { desc = "Goto-Preview Declaration" })
+      vim.keymap.set("n", "<leader>pr", function() goto_preview.goto_preview_references() end, { desc = "Goto-Preview References" })
+      vim.keymap.set("n", "<leader>pc", function() goto_preview.close_all_win() end, { desc = "Goto-Preview Close All Window" })
+    end
+  },
+  {
     "mbbill/undotree",
     cmd = { "UndotreeToggle" },
     opts = { use_default_keymaps = false },
@@ -124,12 +137,7 @@ return {
           },
         },
       })
-      vim.keymap.set(
-        "n",
-        "<leader>n",
-        "<cmd>Neotree filesystem reveal left toggle<cr>",
-        { desc = "NeoTree Toggle" }
-      )
+      vim.keymap.set("n", "<leader>n", "<cmd>Neotree filesystem reveal left toggle<cr>", { desc = "NeoTree Toggle" })
     end,
   },
 }
