@@ -79,4 +79,11 @@ function M.close_current_buf()
   vim.cmd("bdelete! " .. current_buf)
 end
 
+function M.close_current_buf_and_window()
+  local current_buf = vim.api.nvim_get_current_buf()
+  M.bufnav(vim.v.count > 0 and vim.v.count or 1)
+  vim.cmd("bdelete! " .. current_buf)
+  vim.cmd("q")
+end
+
 return M

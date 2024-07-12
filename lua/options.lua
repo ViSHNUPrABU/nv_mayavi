@@ -16,7 +16,7 @@ vim.keymap.set('n', '<leader>a', "gg0VG$", { desc = "Select All" })
 vim.keymap.set('n', '<leader>w', "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set('n', '<leader>W', "<cmd>wall<cr>", { desc = "Save" })
 vim.keymap.set('n', '<leader>x', "<cmd>q<cr>", { desc = "Quit" })
-vim.keymap.set('n', '<leader>X', "<cmd>qall<cr>", { desc = "Quit All" })
+vim.keymap.set('n', '<leader>X', function() require("custom.ui").close_current_buf_and_window() end, { desc = "Close current buffer and window" })
 vim.keymap.set('n', '<leader>c', function() require("custom.ui").close_current_buf() end, { desc = "Close Buffer" })
 vim.keymap.set('n', '<leader>C', function() require("custom.ui").close_all_buf_except_current() end, { desc = "Close all buffer except current" })
 
@@ -42,7 +42,7 @@ vim.keymap.set('n', '<leader>wv', "<cmd>vsplit<cr>", { desc = "Vertical Split" }
 vim.keymap.set('n', '<leader>wh', "<cmd>split<cr>", { desc = "Horizontal Split" })
 
 vim.keymap.set('n', '<A-t>', "<cmd>tabnext<cr>", { desc = "Next tab" })
--- vim.keymap.set('n', '<A-t>', "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+vim.keymap.set('n', '<A-T>', "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 vim.keymap.set('n', '<leader>tn', "<cmd>tabnew<cr>", { desc = "New tab" })
 vim.keymap.set('n', '<leader>tc', "<cmd>tabclose<cr>", { desc = "Close tab" })
 
