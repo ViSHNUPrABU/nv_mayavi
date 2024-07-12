@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>X', function() require("custom.ui").close_current_b
 vim.keymap.set('n', '<leader>c', function() require("custom.ui").close_current_buf() end, { desc = "Close Buffer" })
 vim.keymap.set('n', '<leader>C', function() require("custom.ui").close_all_buf_except_current() end, { desc = "Close all buffer except current" })
 
-vim.keymap.set('n', '<leader>df', function() vim.wo.foldenable = false end, { desc = "Diable Fold For Window" })
+vim.keymap.set('n', '<leader>df', function() vim.wo.foldenable = false end, { desc = "Disable Fold For Window" })
 
 vim.keymap.set('n', '<leader>db', "<cmd>DBUIToggle<cr>", { desc = "Toggle Dadbod UI" })
 vim.keymap.set('n', '<F7>', "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
