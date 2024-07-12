@@ -3,10 +3,10 @@ local M = {}
 local datadir = vim.fn.stdpath('data')
 
 function M.restore_tabstop_info(session_info)
-  vim.bo.expandtab = session_info.tab_info.expandtab
-  vim.bo.tabstop = session_info.tab_info.tabstop
-  vim.bo.softtabstop = session_info.tab_info.softtabstop
-  vim.bo.shiftwidth = session_info.tab_info.shiftwidth
+  vim.o.expandtab = session_info.tab_info.expandtab
+  vim.o.tabstop = session_info.tab_info.tabstop
+  vim.o.softtabstop = session_info.tab_info.softtabstop
+  vim.o.shiftwidth = session_info.tab_info.shiftwidth
 end
 
 function M.restore_tabpages(session_info)
@@ -25,10 +25,10 @@ function M.info_to_be_stored_on_session()
   return {
     buf_info = vim.fn.getbufinfo(),
     tab_info = {
-      expandtab = vim.bo.expandtab,
-      tabstop = vim.bo.tabstop,
-      softtabstop = vim.bo.softtabstop,
-      shiftwidth = vim.bo.shiftwidth
+      expandtab = vim.o.expandtab,
+      tabstop = vim.o.tabstop,
+      softtabstop = vim.o.softtabstop,
+      shiftwidth = vim.o.shiftwidth
     }
   }
 end

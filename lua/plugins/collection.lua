@@ -2,7 +2,7 @@ return {
   {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
+    config = function()
       local startify = require'alpha.themes.startify'.config
       startify.layout[2].val = {
           [[                                      __                    ]],
@@ -12,9 +12,12 @@ return {
           [[   \ \_\ \_\\ \____\\ \____/ \ \___/   \ \_\\ \_\ \_\ \_\   ]],
           [[    \/_/\/_/ \/____/ \/___/   \/__/     \/_/ \/_/\/_/\/_/   ]],
       }
-      require'alpha'.setup(startify)
+      require('alpha').setup(startify)
+      -- some plugins are not loaded while loading the session when using Vim Eventsand
+      -- and Lazy User Events, so loading after alpha-nvim page is loaded
+      require("custom.sessions").load_current_dir_session()
     end
-  };
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -22,6 +25,24 @@ return {
     config = function()
       vim.cmd.colorscheme("catppuccin")
     end,
+  },
+  {
+    'akinsho/git-conflict.nvim',
+    version = "*",
+    config = function()
+      require'git-conflict'.setup({
+        default_mappings = true,
+        default_commands = true,
+        disable_diagnostics = false,
+        list_opener = 'copen',
+        highlights = {
+          incoming = 'DiffAdd',
+          current = 'DiffText',
+        }
+      })
+      vim.keymap.set("n", "<leader>cr", "<cmd>GitConflictRefresh<cr>", { desc = "Refresh git conflicts" })
+      vim.keymap.set("n", "<leader>cl", "<cmd>GitConflictListQf<cr>", { desc = "List Git Conflicts in List" })
+    end
   },
   {
     'rmagatti/goto-preview',

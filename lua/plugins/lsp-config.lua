@@ -18,6 +18,12 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.tsserver.setup({})
       lspconfig.angularls.setup({})
+      lspconfig.jsonls.setup({})
+      lspconfig.jdtls.setup({})
+      lspconfig.gopls.setup({})
+      lspconfig.rust_analyzer.setup({
+        root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
+      })
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
       vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
