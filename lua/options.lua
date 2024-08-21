@@ -8,6 +8,8 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.g.mapleader = " "
 
+vim.keymap.set('n', '<A-e>', "e", { desc = "Refresh current buffer" })
+
 vim.keymap.set('n', '<A-f>', "10j", { desc = "Move down 10 lines" })
 vim.keymap.set('n', '<A-b>', "10k", { desc = "Move up 10 lines" })
 
@@ -23,7 +25,7 @@ vim.keymap.set('n', '<leader>C', function() require("custom.ui").close_all_buf_e
 vim.keymap.set('n', '<leader>df', function() vim.wo.foldenable = false end, { desc = "Disable Fold For Window" })
 
 vim.keymap.set('n', '<leader>db', "<cmd>DBUIToggle<cr>", { desc = "Toggle Dadbod UI" })
-vim.keymap.set('n', '<F7>', "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
+vim.keymap.set({'n','t'}, '<F7>', "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
 
 vim.keymap.set('n', '<C-h>', "<C-w>h", { desc = "Move to left split" })
 vim.keymap.set('n', '<C-j>', "<C-w>j", { desc = "Move to below split" })
@@ -59,3 +61,4 @@ vim.keymap.set('n', '<leader>ut', "<cmd>UndotreeToggle<cr>", { desc = "UndoTree 
 
 vim.keymap.set('n', '<Tab>', function() require("custom.ui").bufnav(vim.v.count > 0 and vim.v.count or 1) end, { desc = "Next buffer" })
 vim.keymap.set('n', '<S-Tab>', function() require("custom.ui").bufnav(-(vim.v.count > 0 and vim.v.count or 1)) end, { desc = "Previous buffer" })
+vim.keymap.set('t', '<F8>', function() require("custom.ui").bufnav(vim.v.count > 0 and vim.v.count or 1) end, { desc = "Next buffer" })
