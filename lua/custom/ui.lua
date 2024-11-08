@@ -29,23 +29,13 @@ function M.bufnav(n)
   local dbui_pattern = vim.fn.getcwd() .. "/dbui"
   local dbout_pattern = ".*dbout"
 
-  local file = io.open("~/Documents/logs/temp.log", "a")
-  if file then
-    file:write(vim.inspect(dbui_pattern))
-    file:write(vim.inspect(bufs))
-
   for _, info in ipairs(buf_info) do
-    file:write(vim.inspect(info))
     local no_nav_condition = info.name and
         (info.name:find(term_pattern) == nil) and (info.name:find(neo_tree_pattern) == nil)
         and (info.name ~= dbui_pattern) and (info.name:find(dbout_pattern) == nil)
     if info.variables.tabpage == current_tab and no_nav_condition == true then
       table.insert(bufs, info.bufnr)
     end
-  end
-
-    file:write(vim.inspect(bufs))
-    file:close()
   end
 
   vim.t.bufs = bufs
