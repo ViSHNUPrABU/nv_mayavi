@@ -1,5 +1,19 @@
 return {
   {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+  {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
@@ -160,5 +174,8 @@ return {
       })
       vim.keymap.set("n", "<leader>n", "<cmd>Neotree filesystem reveal left toggle<cr>", { desc = "NeoTree Toggle" })
     end,
+  },
+  {
+    "LunarVim/bigfile.nvim",
   },
 }

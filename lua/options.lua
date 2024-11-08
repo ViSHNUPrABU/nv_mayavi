@@ -6,6 +6,7 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
+vim.o.colorcolumn = '100'
 vim.g.mapleader = " "
 
 vim.keymap.set('n', '<A-e>', "e", { desc = "Refresh current buffer" })
@@ -23,6 +24,7 @@ vim.keymap.set('n', '<leader>c', function() require("custom.ui").close_current_b
 vim.keymap.set('n', '<leader>C', function() require("custom.ui").close_all_buf_except_current() end, { desc = "Close all buffer except current" })
 
 vim.keymap.set('n', '<leader>df', function() vim.wo.foldenable = false end, { desc = "Disable Fold For Window" })
+vim.keymap.set('n', '<leader>dw', function() vim.wo.wrap = true end, { desc = "Enable Wrap For Window" })
 
 vim.keymap.set('n', '<leader>db', "<cmd>DBUIToggle<cr>", { desc = "Toggle Dadbod UI" })
 vim.keymap.set({'n','t'}, '<F7>', "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
@@ -58,6 +60,7 @@ vim.keymap.set('n', '<A-C>', function() require("custom.git-diff").close_quickfi
 
 vim.keymap.set('n', '<leader>ui', function() require("custom.ui").set_indent() end, { desc = "Change indent setting" })
 vim.keymap.set('n', '<leader>ut', "<cmd>UndotreeToggle<cr>", { desc = "UndoTree Toggle" })
+vim.keymap.set('n', '<leader>uw', "gqap", { desc = "Enable TextWidth wrap" })
 
 vim.keymap.set('n', '<Tab>', function() require("custom.ui").bufnav(vim.v.count > 0 and vim.v.count or 1) end, { desc = "Next buffer" })
 vim.keymap.set('n', '<S-Tab>', function() require("custom.ui").bufnav(-(vim.v.count > 0 and vim.v.count or 1)) end, { desc = "Previous buffer" })
